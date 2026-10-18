@@ -1,0 +1,34 @@
+
+name: Calculator CI-CD
+
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Build Docker Image and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -f calculator/Dockerfile \
+            -t calculator-cicd:latest \
+            .
+
+      - name: Run unit tests inside Docker
+        run: |
+          docker run --rm calculator-cicd:latest

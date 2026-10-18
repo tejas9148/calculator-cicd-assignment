@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Calculator Lambda function for the CI/CD assignment
+Resources:
+  CalculatorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: calculator-cicd
+      CodeUri: CalculatorFunction
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.12
+      Timeout: 10
+      MemorySize: 128
+    Metadata:
+      SamResourceId: CalculatorFunction
