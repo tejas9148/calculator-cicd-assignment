@@ -11,5 +11,6 @@ Resources:
       CodeUri: .
       Handler: lambda_function.lambda_handler
       Runtime: python3.12
+      Role: arn:aws:iam::308638207307:role/CalculatorLambdaExecutionRole
       Timeout: 10
       MemorySize: 128
